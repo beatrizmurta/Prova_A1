@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loja de Informática e Cursos Técnicos</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+
+      /* Letreiro Digital com fundo em degradê de azul para verde */
+      .letreiro {
+        background: linear-gradient(
+          90deg,
+          #2dd0e0,
+          #49e088
+        ); /* Degradê entre azul e verde */
+        color: white;
+        font-size: 28px;
+        text-align: center;
+        padding: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: bold;
+      }
+
+      /* Barra de Navegação */
+      .navbar {
+        background-color: #49e088; /* Tom de verde */
+        padding: 10px 0;
+        text-align: center;
+        margin-bottom: 40px; /* Aumentado para criar mais espaço entre o letreiro e a barra de navegação */
+      }
+
+      .navbar a {
+        display: inline-block;
+        color: black; /* Cor preta para os links */
+        text-decoration: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        transition: background-color 0.3s; /* Efeito ao passar o mouse */
+      }
+
+      .navbar a:hover {
+        background-color: rgba(
+          73,
+          224,
+          136,
+          0.7
+        ); /* Tom de verde com opacidade ao passar o mouse */
+      }
+
+      /* Tabela de Preços */
+      .tabela-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      table {
+        width: 80%;
+        border-collapse: collapse;
+        background-color: #49e088; /* Tom de verde */
+      }
+
+      th,
+      td {
+        border: 2px solid #e0412d; /* Tom de vermelho */
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #49e088;
+        color: black;
+      }
+
+      td {
+        color: black;
+      }
+
+      td:nth-child(2) {
+        background-color: rgba(45, 208, 224, 0.7);
+        font-weight: bold;
+        position: relative;
+      }
+
+      .linha-topo {
+        background-color: #49e088;
+        text-align: center;
+        font-weight: bold;
+        color: black;
+        font-size: 18px;
+      }
+
+      .linha-meio-preco:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: #e0412d;
+      }
+
+      .preco-acima {
+        margin-bottom: 5px;
+      }
+
+      .preco-abaixo {
+        margin-top: 5px;
+      }
+
+      .linha-meio-estoque {
+        position: relative; /* Necessário para o posicionamento absoluto da linha */
+      }
+
+      .linha-meio-estoque:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: #e0412d; /* Linha vermelha */
+      }
+
+      .estoque-acima,
+      .estoque-abaixo {
+        text-align: left; /* Alinha os valores à esquerda */
+      }
+
+      .voltar-topo {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .voltar-topo a {
+        text-decoration: none;
+        background-color: rgba(45, 208, 224, 0.7);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+      }
+
+      hr {
+        margin-top: 20px;
+      }
+
+      .cursos-section {
+        margin-top: 40px;
+        text-align: center;
+      }
+
+      .cursos-section h2 {
+        color: black;
+      }
+
+      .cards-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .card {
+        background-color: white;
+        color: black;
+        width: 300px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: left;
+      }
+
+      .card h3 {
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #49e088;
+      }
+
+      .card ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .card ul li {
+        margin-bottom: 5px;
+      }
+
+      .card ul li span {
+        font-weight: bold;
+      }
+
+      /* Estilo para a seção de fotos */
+      .fotos-section {
+        margin-top: 40px;
+      }
+
+      .fotos-section h2 {
+        text-align: center;
+        color: black;
+      }
+
+      .fotos-section img {
+        display: block;
+        margin: 0 auto; /* Centraliza a imagem */
+        width: 80%; /* Define a largura da imagem */
+        max-width: 600px; /* Limita a largura máxima da imagem */
+      }
+
+      .nome-aluno {
+        margin-top: 10px; /* Margem para separar do espaço acima */
+        font-size: 18px;
+        color: black;
+        text-align: left; /* Alinhado à esquerda */
+      }
+
+      /* Estilo da linha azul */
+      .linha-azul {
+        width: 80%; /* A mesma largura da imagem */
+        margin: 20px auto; /* Centraliza a linha */
+        border: 2px solid blue; /* Linha azul */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Letreiro Digital -->
+    <div class="letreiro">Loja de Informática e Cursos Técnicos</div>
+
+    <!-- Barra de Navegação -->
+    <div class="navbar">
+      <a href="#tabela">Tabela de Preços</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#fotos">Fotos</a>
+      <a href="page_2.html">Ir para Página 2</a>
+    </div>
+
+    <!-- Tabela de Preços -->
+    <div class="tabela-container" id="tabela">
+      <table>
+        <tr>
+          <td colspan="3" class="linha-topo">Loja de Informática</td>
+        </tr>
+        <tr>
+          <th>Produto</th>
+          <th>Preço</th>
+          <th>Estoque</th>
+        </tr>
+        <tr>
+          <td>Capa estofado</td>
+          <td>R$ 15,00</td>
+          <td>12</td>
+        </tr>
+        <tr>
+          <td>Pneu</td>
+          <td class="linha-meio-preco">
+            <div class="preco-acima">R$ 130,00</div>
+            <div class="preco-abaixo">R$ 180,00</div>
+          </td>
+          <td class="linha-meio-estoque">
+            <div class="estoque-acima">20</div>
+            <div class="estoque-abaixo">24</div>
+          </td>
+        </tr>
+        <tr>
+          <td>Lanterna traseira</td>
+          <td>R$ 12,00</td>
+          <td>3</td>
+          <!-- Considerando que não foi informado estoque para a lanterna -->
+        </tr>
+      </table>
+    </div>
+
+    <!-- Botão Voltar ao Topo -->
+    <div class="voltar-topo">
+      <a href="#">Voltar ao topo</a>
+    </div>
+
+    <hr />
+
+    <!-- Seção de Cursos -->
+    <div class="cursos-section" id="cursos">
+      <h2>Cursos</h2>
+      <div class="cards-container">
+        <!-- Card 1: Curso Técnico ADM -->
+        <div class="card">
+          <h3>Curso Técnico ADM</h3>
+          <ul>
+            <li><span>1° Trimestre</span></li>
+            <li>Prova Parcial</li>
+            <li>Prova Trimestral</li>
+            <li>Trabalho</li>
+            <br />
+            <li><span>2° Trimestre</span></li>
+            <li>Prova Parcial</li>
+            <li>Prova Trimestral</li>
+            <li>Trabalho</li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Curso Técnico Informática -->
+        <div class="card">
+          <h3>Curso Técnico Informática</h3>
+          <ul>
+            <li><span>1° Trimestre</span></li>
+            <li>Prova Parcial</li>
+            <li>Prova Trimestral</li>
+            <li>Trabalho</li>
+            <br />
+            <li><span>2° Trimestre</span></li>
+            <li>Prova Parcial</li>
+            <li>Prova Trimestral</li>
+            <li>Trabalho</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- Botão Voltar ao Topo -->
+    <div class="voltar-topo">
+      <a href="#">Voltar ao topo</a>
+    </div>
+
+    <!-- Seção de Fotos -->
+    <div class="fotos-section" id="fotos">
+      <h2>Fotos</h2>
+
+      <!-- Linha azul acima da imagem -->
+      <div class="linha-azul"></div>
+
+      <!-- Centralização da imagem e do campo de nome do aluno -->
+      <div class="fotos-container" style="text-align: center">
+        <img src="imagem_1.jpeg" alt="Descrição da Imagem" />
+      </div>
+
+      <!-- Campo de Nome do Aluno alinhado à esquerda -->
+      <div class="nome-aluno">
+        Nome do Aluno:
+        <input type="text" placeholder="Digite seu nome aqui" />
+      </div>
+
+      <!-- Linha horizontal centralizada abaixo da imagem -->
+      <hr style="width: 20%; margin: 20px auto" />
+    </div>
+
+    <!-- Botão Voltar ao Topo -->
+    <div class="voltar-topo">
+      <a href="#">Voltar ao topo</a>
+    </div>
+  </body>
+</html>
